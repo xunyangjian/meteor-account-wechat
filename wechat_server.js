@@ -135,4 +135,3 @@ Meteor.methods({
     };
   }
 });
-Contact

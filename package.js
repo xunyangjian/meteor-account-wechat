@@ -20,18 +20,29 @@ Package.onUse(function(api) {
   api.use(['templating'], 'client');
 
   api.use(['underscore', 'random']);
+   api.use('accounts-base', ['client', 'server']);
+  // Export Accounts (etc) to packages using this one.
+  api.imply('accounts-base', ['client', 'server']);
   api.use('accounts-oauth', ['client', 'server']);
 
   api.export('MeteorWeChat');//
   api.export('MeteorWebWeChat');
 
   api.addFiles('webwechat_server.js', 'server');
-  api.addFiles('wechat.js','client');
   api.addFiles('webwechat_browser.js','web.browser');
-
-   api.addFiles(['wechat_configure.html'], 'client');
+ 
+  api.addFiles('wechat_cordova.js', 'web.cordova');
+  api.addFiles('wechat_server.js','server');
+  
+  api.addFiles('wechat.js','client');
+ 
+  api.addFiles(['wechat_configure.html'], 'client');
   // api.mainModule('meteor-account-wechat.js');
 
+});
+
+Cordova.depends({
+  'cordova-plugin-wechat': '1.1.2'
 });
 
 // Package.onTest(function(api) {
